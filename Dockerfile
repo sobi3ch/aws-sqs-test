@@ -1,5 +1,6 @@
-FROM centos:7
+FROM php:7.2-apache
 
-RUN yum -y update && \
-    yum install -y epel-release && \
-    yum install -y wget php-cli htop
+COPY credentials /.aws/credentials
+
+RUN chgrp -R www-data /.aws && \
+    chmod 644 /.aws/credentials
